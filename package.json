@@ -4,6 +4,7 @@
   "description": "Minify C/C++ code for code golf while preserving behavior.",
   "version": "0.0.1",
   "publisher": "cjdyer",
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "vscode": "^1.111.0"
   },
@@ -11,6 +12,10 @@
     "Formatters",
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjdyer/code-golf-minifier.git"
+  },
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [

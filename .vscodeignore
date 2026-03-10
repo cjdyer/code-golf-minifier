@@ -5,3 +5,5 @@ dist/test/**
 **/*.map
 .gitignore
 .vscode-test.js
+.nvmrc
+tsconfig.json
