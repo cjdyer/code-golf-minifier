@@ -6,4 +6,5 @@ dist/test/**
 .gitignore
 .vscode-test.js
 .nvmrc
+.github/**
 tsconfig.json
