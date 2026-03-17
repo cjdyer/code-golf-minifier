@@ -5,6 +5,7 @@
   "version": "0.0.2",
   "publisher": "cjdyer",
   "license": "SEE LICENSE IN LICENSE",
+  "icon": "img.png",
   "engines": {
     "vscode": "^1.100.0"
   },
