@@ -2,7 +2,7 @@
   "name": "code-golf-minifier",
   "displayName": "Code Golf Minifier",
   "description": "Minify C/C++ and JavaScript code for code golf while preserving behavior.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "cjdyer",
   "license": "SEE LICENSE IN LICENSE",
   "icon": "img.png",
