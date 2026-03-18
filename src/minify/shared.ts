@@ -25,7 +25,12 @@ export function isWordChar(ch: string | undefined, allowDollar = false): boolean
   if (!ch) return false;
   const code = ch.charCodeAt(0);
   if (allowDollar && ch === '$') return true;
-  return ch === '_' || (code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
+  return (
+    ch === '_' ||
+    (code >= 48 && code <= 57) ||
+    (code >= 65 && code <= 90) ||
+    (code >= 97 && code <= 122)
+  );
 }
 
 export function matchOperator(input: string, i: number, opsByLength: string[]): string {
@@ -35,7 +40,11 @@ export function matchOperator(input: string, i: number, opsByLength: string[]): 
   return input[i] ?? '';
 }
 
-export function readQuoted(input: string, start: number, quoteIndex: number): { value: string; end: number } {
+export function readQuoted(
+  input: string,
+  start: number,
+  quoteIndex: number
+): { value: string; end: number } {
   const len = input.length;
   const quote = input[quoteIndex];
   let i = quoteIndex + 1;

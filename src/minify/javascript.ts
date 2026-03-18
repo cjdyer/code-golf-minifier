@@ -1,18 +1,66 @@
 import { createEmitter, makeNeedsSpace, Token } from './core';
-import { isDigit, isIdPart, isIdStart, isWhitespace, isWordChar, matchOperator, readQuoted } from './shared';
+import {
+  isDigit,
+  isIdPart,
+  isIdStart,
+  isWhitespace,
+  isWordChar,
+  matchOperator,
+  readQuoted
+} from './shared';
 
 const MULTI_OPS = [
-  '>>>=', '===', '!==', '>>>', '<<=', '>>=',
-  '**=', '&&=', '||=', '??=', '=>', '?.', '...',
-  '++', '--', '**', '<<', '>>', '<=', '>=', '==', '!=',
-  '&&', '||', '??', '+=', '-=', '*=', '/=', '%=', '&=', '|=', '^='
+  '>>>=',
+  '===',
+  '!==',
+  '>>>',
+  '<<=',
+  '>>=',
+  '**=',
+  '&&=',
+  '||=',
+  '??=',
+  '=>',
+  '?.',
+  '...',
+  '++',
+  '--',
+  '**',
+  '<<',
+  '>>',
+  '<=',
+  '>=',
+  '==',
+  '!=',
+  '&&',
+  '||',
+  '??',
+  '+=',
+  '-=',
+  '*=',
+  '/=',
+  '%=',
+  '&=',
+  '|=',
+  '^='
 ];
 
 const MERGE_OPS = new Set(MULTI_OPS);
 const OPS_BY_LENGTH = [...MULTI_OPS].sort((a, b) => b.length - a.length);
 const REGEX_PREFIX_KEYWORDS = new Set([
-  'return', 'throw', 'case', 'else', 'do', 'yield', 'await',
-  'typeof', 'void', 'delete', 'new', 'in', 'of'
+  'return',
+  'throw',
+  'case',
+  'else',
+  'do',
+  'yield',
+  'await',
+  'typeof',
+  'void',
+  'delete',
+  'new',
+  'in',
+  'of'
 ]);
 const REGEX_DISALLOW_AFTER_OP = new Set([')', ']', '}', '++', '--']);
 
@@ -129,10 +177,12 @@ function isRegexStart(prev: Token | null): boolean {
 }
 
 export function minifyJavascript(input: string): string {
-  const emitter = createEmitter(makeNeedsSpace({
-    isWordChar: (ch: string | undefined) => isWordChar(ch, true),
-    mergeOps: MERGE_OPS
-  }));
+  const emitter = createEmitter(
+    makeNeedsSpace({
+      isWordChar: (ch: string | undefined) => isWordChar(ch, true),
+      mergeOps: MERGE_OPS
+    })
+  );
   const len = input.length;
   let i = 0;
   let prevToken: Token | null = null;

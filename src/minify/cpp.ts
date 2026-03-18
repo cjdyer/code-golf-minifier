@@ -1,18 +1,52 @@
 /* eslint-disable no-control-regex */
 import { createEmitter, makeNeedsSpace, Token } from './core';
-import { isDigit, isIdPart, isIdStart, isWhitespace, isWordChar, matchOperator, readQuoted } from './shared';
+import {
+  isDigit,
+  isIdPart,
+  isIdStart,
+  isWhitespace,
+  isWordChar,
+  matchOperator,
+  readQuoted
+} from './shared';
 
 const MULTI_OPS = [
-  '>>=', '<<=', '->*', '...', '##',
-  '++', '--', '->', '<<', '>>', '<=', '>=', '==', '!=',
-  '&&', '||', '+=', '-=', '*=', '/=', '%=', '^=', '&=', '|=',
-  '::', '.*'
+  '>>=',
+  '<<=',
+  '->*',
+  '...',
+  '##',
+  '++',
+  '--',
+  '->',
+  '<<',
+  '>>',
+  '<=',
+  '>=',
+  '==',
+  '!=',
+  '&&',
+  '||',
+  '+=',
+  '-=',
+  '*=',
+  '/=',
+  '%=',
+  '^=',
+  '&=',
+  '|=',
+  '::',
+  '.*'
 ];
 
 const MERGE_OPS = new Set(MULTI_OPS);
 const OPS_BY_LENGTH = [...MULTI_OPS].sort((a, b) => b.length - a.length);
 
-function readRawString(input: string, start: number, prefixLen: number): { value: string; end: number } | null {
+function readRawString(
+  input: string,
+  start: number,
+  prefixLen: number
+): { value: string; end: number } | null {
   const len = input.length;
   let i = start + prefixLen; // positioned after R"
   const delimStart = i;

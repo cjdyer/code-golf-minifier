@@ -24,12 +24,9 @@ function registerMinifyCommand(
       return;
     }
 
-    const fullRange = new vscode.Range(
-      doc.positionAt(0),
-      doc.positionAt(original.length)
-    );
+    const fullRange = new vscode.Range(doc.positionAt(0), doc.positionAt(original.length));
 
-    await editor.edit(editBuilder => {
+    await editor.edit((editBuilder) => {
       editBuilder.replace(fullRange, minified);
     });
   });

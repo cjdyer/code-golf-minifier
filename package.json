@@ -40,7 +40,10 @@
   },
   "scripts": {
     "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
     "watch": "tsc -watch -p ./",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
     "pretest": "npm run compile",
     "test": "vscode-test",
     "vscode:prepublish": "npm run compile",
@@ -51,10 +54,15 @@
     "@types/mocha": "^10.0.7",
     "@types/node": "^25.5.0",
     "@types/vscode": "^1.100.0",
-    "@vscode/test-cli": "^0.0.12",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "ovsx": "^0.10.9",
+    "prettier": "^3.3.3",
     "typescript": "^5.9.3"
   }
 }

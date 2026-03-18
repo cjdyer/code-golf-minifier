@@ -10,7 +10,8 @@ int main(int c, char **v)
         ;
 }
 `;
-    const expected = '#import<ios>\nint main(int c,char**v){for(c=0,puts("Hello, World!");;c<10?printf("%d\\n",c++):puts(*++v));}';
+    const expected =
+      '#import<ios>\nint main(int c,char**v){for(c=0,puts("Hello, World!");;c<10?printf("%d\\n",c++):puts(*++v));}';
     assert.strictEqual(minifyCpp(input), expected);
   });
 
