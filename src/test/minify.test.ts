@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { minifyCpp } from '../extension';
+import { minifyCpp, minifyJavascript } from '../minify';
 
 suite('minifyCpp', () => {
   test('minifies the sample program', () => {
@@ -40,5 +40,35 @@ int b = X;`;
     const input = 'auto s = R"(a // b /* c */)";';
     const expected = 'auto s=R"(a // b /* c */)";';
     assert.strictEqual(minifyCpp(input), expected);
+  });
+});
+
+suite('minifyJavascript', () => {
+  test('removes comments and whitespace', () => {
+    const input = `const add = (a, b) => {
+  // comment
+  return a + b; /* block */
+};`;
+    const expected = 'const add=(a,b)=>{return a+b;};';
+    assert.strictEqual(minifyJavascript(input), expected);
+  });
+
+  test('preserves strings and regex literals', () => {
+    const input = `const s = "a // b";
+const r = /a\\/\\/b/gi;`;
+    const expected = 'const s="a // b";const r=/a\\/\\/b/gi;';
+    assert.strictEqual(minifyJavascript(input), expected);
+  });
+
+  test('avoids merging + + into ++', () => {
+    const input = 'let x = 1 + +2;';
+    const expected = 'let x=1+ +2;';
+    assert.strictEqual(minifyJavascript(input), expected);
+  });
+
+  test('preserves template literals', () => {
+    const input = 'const name = "Bob"; const msg = `hi ${name} // not comment`;';
+    const expected = 'const name="Bob";const msg=`hi ${name} // not comment`;';
+    assert.strictEqual(minifyJavascript(input), expected);
   });
 });
