@@ -60,7 +60,7 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-prettier": "^10.1.8",
     "ovsx": "^0.10.9",
     "prettier": "^3.3.3",
     "typescript": "^5.9.3"
